@@ -1,0 +1,32 @@
+
+{% extends '/backend/base_reg_login.html' %}
+
+{% block title %}
+    登录
+{% endblock %}
+
+{% block content %}
+    <dl class="admin_login">
+        <dt>
+          <strong>博客后台管理系统</strong>
+          <em>Management System</em>
+        </dt>
+
+        <form action="/login/" method="post">
+            <dd class="user_icon">
+              <input type="text" placeholder="账号" class="login_txtbx" name="username"/>
+            </dd>
+            <dd class="pwd_icon">
+              <input type="password" placeholder="密码" class="login_txtbx" name="password"/>
+            </dd>
+            <dd>
+              <input type="submit" value="立即登录" class="submit_btn"/>
+            </dd>
+        </form>
+
+        <dd>
+            <p>© 2015-2016 DeathGhost 版权所有</p>
+            <p>陕B2-20080224-1</p>
+        </dd>
+    </dl>
+{% endblock %}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+    {% block css %}
+        <link href="/static/frontend/css/base.css" rel="stylesheet">
+        <link href="/static/frontend/css/index.css" rel="stylesheet">
+        <link href="/static/frontend/css/m.css" rel="stylesheet">
+    {% endblock %}
+
+    {% block js %}
+        <!--[if lt IE 9]>
+        <script src="/static/frontend/js/modernizr.js"></script>
+        <![endif]-->
+        <script>
+        window.onload = function ()
+        {
+            var oH2 = document.getElementsByTagName("h2")[0];
+            var oUl = document.getElementsByTagName("ul")[0];
+            oH2.onclick = function ()
+            {
+                var style = oUl.style;
+                style.display = style.display == "block" ? "none" : "block";
+                oH2.className = style.display == "block" ? "open" : ""
+            }
+        }
+        </script>
+        <script src="/static/frontend/js/nav.js"></script>
+    {% endblock %}
+</head>
+<body>
+    {% block header %}
+        <header>
+          <div class="tophead">
+           <div class="logo"><a href="/">杨青个人博客</a></div>
+            <div id="mnav">
+              <h2><span class="navicon"></span></h2>
+              <ul>
+                <li><a href="{{ url_for('web.index', encoding='GB2312') }}">网站首页</a></li>
+                <li><a href="{{ url_for('web.about', encoding='GB2312') }}">关于我</a></li>
+
+                <li><a href="{{ url_for('web.gbook', encoding='GB2312') }}">留言</a></li>
+              </ul>
+            </div>
+            <nav class="topnav" id="topnav">
+              <ul>
+                <li><a href="{{ url_for('web.index', encoding='GB2312') }}">网站首页</a></li>
+                <li><a href="{{ url_for('web.about', encoding='GB2312') }}">关于我</a></li>
+                <li><a href="{{ url_for('web.gbook', encoding='GB2312') }}">留言</a></li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+    {% endblock %}
+    {% block content %}
+    {% endblock %}
+    {% block footer %}
+        <div class="blank"></div>
+        <footer>
+          <p>Design by <a href="/">赵一飞个人博客</a> <a href="/">蜀ICP备11002373号-1</a></p>
+        </footer>
+    {% endblock %}
+</body>
+</html>

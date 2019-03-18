@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+        <link href="/static/frontend/css/base.css" rel="stylesheet">
+        <link href="/static/frontend/css/index.css" rel="stylesheet">
+        <link href="/static/frontend/css/m.css" rel="stylesheet">
+
+        <!--[if lt IE 9]>
+        <script src="/static/frontend/js/modernizr.js"></script>
+        <![endif]-->
+        <script>
+        window.onload = function ()
+        {
+            var oH2 = document.getElementsByTagName("h2")[0];
+            var oUl = document.getElementsByTagName("ul")[0];
+            oH2.onclick = function ()
+            {
+                var style = oUl.style;
+                style.display = style.display == "block" ? "none" : "block";
+                oH2.className = style.display == "block" ? "open" : ""
+            }
+        }
+        </script>
+        <script src="/static/frontend/js/nav.js"></script>
+</head>
+<body>
+    <header>
+      <div class="tophead">
+       <div class="logo"><a href="/">ChiAo1fei</a></div>
+        <div id="mnav">
+          <h2><span class="navicon"></span></h2>
+          <ul>
+            <li><a href="{{ url_for('web.index') }}">网站首页</a></li>
+            <li><a href="{{ url_for('web.about') }}">关于我</a></li>
+            <li><a href="{{ url_for('web.gbook') }}">留言</a></li>
+          </ul>
+        </div>
+        <nav class="topnav" id="topnav">
+          <ul>
+            <li><a href="{{ url_for('web.index') }}">网站首页</a></li>
+            <li><a href="{{ url_for('web.about') }}">关于我</a></li>
+            <li><a href="{{ url_for('web.gbook') }}">留言</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+<div class="picshow">
+<ul>
+  <li><a href="/"><i><img src="/static/frontend/images/b01.jpg"></i>
+    <div class="font">
+      <h3>个人博客模板《早安》</h3>
+    </div>
+    </a></li>
+  <li><a href="/"><i><img src="/static/frontend/images/b02.jpg"></i>
+    <div class="font">
+      <h3>个人博客模板《早安》</h3>
+    </div>
+    </a></li>
+  <li><a href="/"><i><img src="/static/frontend/images/b03.jpg"></i>
+    <div class="font">
+      <h3>个人博客模板《早安》</h3>
+    </div>
+    </a></li>
+  <li><a href="/"><i><img src="/static/frontend/images/b04.jpg"></i>
+    <div class="font">
+      <h3>个人博客模板《早安》</h3>
+    </div>
+    </a></li>
+  <li><a href="/"><i><img src="/static/frontend/images/b05.jpg"></i>
+    <div class="font">
+      <h3>个人博客模板《早安》</h3>
+    </div>
+    </a></li>
+</ul>
+</div>
+<article>
+<div class="blogs">
+  {% for article in articles %}
+  <li> <span class="blogpic"><a href="{{ url_for('web.info', id=article.id) }}"><img src="/static/frontend/images/zd01.jpg"></a></span>
+    <h3 class="blogtitle"><a href="{{ url_for('web.info', id=article.id) }}">{{article.title}}</a></h3>
+    <div class="bloginfo">
+      <p>{{article.desc}}</p>
+    </div>
+    <div class="autor">
+      <span class="lm"><a href="{{ url_for('web.art_list', type=article.tp.t_name) }}" title="CSS3|Html5" target="_blank" class="classname">{{article.tp.t_name}}</a></span>
+      <span class="dtime">{{article.create_time}}</span><span class="viewnum">浏览（<a href="/">0</a>）</span>
+      <span class="readmore"><a href="{{ url_for('web.info', id=article.id) }}">阅读原文</a></span>
+    </div>
+  </li>
+  {% endfor %}
+</div>
+<div class="sidebar">
+  <div class="about">
+    <div class="avatar"> <img src="/static/frontend/images/head.jpg" alt=""> </div>
+    <p class="abname">dancesmile | 赵一飞</p>
+    <p class="abposition">python后端</p>
+    <div class="abtext"> 一个python小白，求多多交流 </div>
+  </div>
+  <div class="search">
+    <form action="" method="post" name="searchform" id="searchform">
+      <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text">
+      <input name="show" value="title" type="hidden">
+      <input name="tempid" value="1" type="hidden">
+      <input name="tbname" value="news" type="hidden">
+      <input name="Submit" class="input_submit" value="搜索" type="submit">
+    </form>
+  </div>
+  <div class="cloud">
+    <h2 class="hometitle">标签云</h2>
+    <ul>
+        {% for type in types %}
+            <a href="{{ url_for('web.art_list', type=type.t_name) }}">{{type.t_name}}</a>
+        {% endfor %}
+    </ul>
+  </div>
+  <div class="paihang">
+    <h2 class="hometitle">点击排行</h2>
+    <ul>
+      <li><b><a href="/download/div/2015-04-10/746.html" target="_blank">【活动作品】柠檬绿兔小白个人博客模板30...</a></b>
+        <p><i><img src="images/t02.jpg"></i>展示的是首页html，博客页面布局格式简单，没有复杂的背景，色彩局部点缀，动态的幻灯片展示，切换卡，标...</p>
+      </li>
+      <li><b><a href="/download/div/2014-02-19/649.html" target="_blank"> 个人博客模板（2014草根寻梦）30...</a></b>
+        <p><i><img src="images/b03.jpg"></i>2014第一版《草根寻梦》个人博客模板简单、优雅、稳重、大气、低调。专为年轻有志向却又低调的草根站长设...</p>
+      </li>
+    </ul>
+  </div>
+  <div class="paihang">
+    <h2 class="hometitle">站长推荐</h2>
+    <ul>
+      <li><b><a href="/download/div/2015-04-10/746.html" target="_blank">【活动作品】柠檬绿兔小白个人博客模板30...</a></b>
+        <p><i><img src="images/t02.jpg"></i>展示的是首页html，博客页面布局格式简单，没有复杂的背景，色彩局部点缀，动态的幻灯片展示，切换卡，标...</p>
+      </li>
+    </ul>
+  </div>
+  <div class="links">
+    <h2 class="hometitle">友情链接</h2>
+    <ul>
+      <li><a href="http://www.yangqq.com" title="杨青个人博客">GitHub</a></li>
+      <li><a href="http://www.yangqq.com" title="杨青个人博客">赵一飞</a></li>
+      <li><a href="http://www.yangqq.com" title="杨青个人博客">赵一飞</a></li>
+    </ul>
+  </div>
+  <div class="weixin">
+    <h2 class="hometitle">官方微信</h2>
+    <ul>
+      <img src="/static/frontend/images/wecaht.jpg">
+    </ul>
+  </div>
+</div>
+</article>
+        <div class="blank"></div>
+        <footer>
+          <p>Design by <a href="/">赵一飞个人博客</a> <a href="/">蜀ICP备11002373号-1</a></p>
+        </footer>
+</body>
+</html>

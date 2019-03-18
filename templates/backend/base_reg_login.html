@@ -1,0 +1,31 @@
+
+{% extends '/backend/base.html' %}
+
+{% block js %}
+    <script src="../../static/backend/js/jquery.js"></script>
+    <script src="../../static/backend/js/verificationNumbers.js"></script>
+    <script src="../../static/backend/js/Particleground.js"></script>
+    <script>
+        $(document).ready(function() {
+          //粒子背景特效
+          $('body').particleground({
+            dotColor: '#5cbdaa',
+            lineColor: '#5cbdaa'
+          });
+          //验证码
+          createCode();
+          //测试提交，对接程序删除即可
+          $(".submit_btn").click(function(){
+              location.href="index.html";
+              });
+        });
+    </script>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='backend/css/style.css')}}"/>
+    <style>
+        body{height:100%;background:#16a085;overflow:hidden;}
+        canvas{z-index:-1;position:absolute;}
+    </style>
+{% endblock %}
